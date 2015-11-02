@@ -1,7 +1,7 @@
 package examples;
 
 import forms.Form;
-import static forms.FormBuilder.*;
+import static forms.Form.*;
 import static rules.Proof.*;
 
 public class AdvancedPropositional {

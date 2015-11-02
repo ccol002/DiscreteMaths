@@ -127,7 +127,7 @@ public class Proof {
 			while (line.length() < 30)
 				line += " ";
 			String depthString = "";
-			while (depthString.length() < depths.get(i)*2)
+			while (depthString.length() < depths.get(i)*2-2)
 				depthString += " ";
 			System.out.println(depthString+number+ ": " + line + reasons.get(i));
 		}

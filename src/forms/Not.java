@@ -12,7 +12,7 @@ public class Not extends Unary{
 	
 	public String toString()
 	{
-		return toStringHelper("¬" + sub);
+		return toStringHelper("!" + sub);
 	}
 	
 	public boolean equals(Object o)

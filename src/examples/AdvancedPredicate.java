@@ -1,6 +1,6 @@
 package examples;
 
-import static forms.FormBuilder.*;
+import static forms.Form.*;
 import static rules.Proof.begin;
 import forms.Form;
 
