@@ -1,7 +1,7 @@
 package rules;
 
 import forms.Exists;
-import forms.ForAll;
+import forms.Forall;
 import forms.Form;
 import forms.Implies;
 
@@ -29,13 +29,13 @@ public class ExistsE extends Rule{
 			
 		
 		Form forall = proof.refer(line2);
-		if (forall.getClass() != ForAll.class)
+		if (forall.getClass() != Forall.class)
 			throw new InvalidRuleException("ExistsE - Expected universal quantifier in line " +line2);
 		else if (forall.getSubstNew()!=null || forall.getSubstOld()!=null)
 			throw new InvalidRuleException("ExistsE - Unexpected variable substitution found at line "+ line2);
 		
 		
-		Form impl = ((ForAll)forall).getSub();
+		Form impl = ((Forall)forall).getSub();
 		if (impl.getClass() != Implies.class)
 			throw new InvalidRuleException("ExistsE - Expected implication within universal quantifier at line " +line2);
 		else if (impl.getSubstNew()!=null || impl.getSubstOld()!=null)

@@ -1,6 +1,6 @@
 package rules;
 
-import forms.ForAll;
+import forms.Forall;
 import forms.Form;
 
 public class ForallI extends Rule{
@@ -39,7 +39,7 @@ public class ForallI extends Rule{
 			if (occursFreeCheck.length()>0)
 				occursFreeCheck = "[" + occursFreeCheck.substring(0,occursFreeCheck.length()-1) + "]";
 			
-			Form forall = new ForAll(var, type,p.clone());
+			Form forall = new Forall(var, type,p.clone());
 			return forall;
 		}
 	}

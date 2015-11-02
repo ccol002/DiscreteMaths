@@ -1,11 +1,11 @@
 package forms;
 
-public class ForAll extends Quantifier{
+public class Forall extends Quantifier{
 
-	public ForAll()
+	public Forall()
 	{}
 	
-	public ForAll (String var, String type, Form sub)throws InvalidFormException
+	public Forall (String var, String type, Form sub)throws InvalidFormException
 	{
 		super(var, type, sub);
 	}
@@ -17,9 +17,9 @@ public class ForAll extends Quantifier{
 	
 	public boolean equals(Object o)
 	{
-		if (o.getClass() != ForAll.class)
+		if (o.getClass() != Forall.class)
 			return false;
-		else if (((ForAll)o).type.equals(type) && ((ForAll)o).sub.equals(sub))
+		else if (((Forall)o).type.equals(type) && ((Forall)o).sub.equals(sub))
 			return true;
 		else
 			return false;
