@@ -2,6 +2,10 @@ package forms;
 
 public class Or extends Binary{
 
+	public Or ()
+	{
+		super();
+	}
 	
 	public Or (Form left, Form right)throws InvalidFormException
 	{
