@@ -27,7 +27,7 @@ public class AdvancedPredicate {
 	/*11*/		.impliesI(2, 10)
 	/*12*/		.forallI(11, "x", "X")
 	/*13*/		.existsE(1, 12)			
-		.end().print();
+		.end().printStepped().printStepped().printStepped();
 		
 	}
 

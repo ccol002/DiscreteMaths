@@ -31,7 +31,7 @@ public class AdvancedPropositional {
 /*12*/		.impliesI(11, 11)	
 /*13*/		.notI(10, 12)
 /*14*/		.notE(13)
-		.end().print();
+		.end().printStepped().printStepped().printStepped();
 		
 	}
 
