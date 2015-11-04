@@ -1,6 +1,6 @@
 README FILE
 
-The code is split into 3 parts: 
+The code is split into 4 parts: 
 
 ** The examples package ** 
 This package contains a few proof examples which can be run by calling the classes' main methods.
@@ -33,4 +33,49 @@ AndE1, AndE2, AndI, BiimpliesE1, BiimpliesE2, BiimpliesI, ExistsE, ExistsI, Fora
 >> Finally two rules to handle variable substitution:
 SubstAdd, SubstRem
 
-The rules package also contains the class Proof which basically brings everything together. This class also contains a number of static methods for syntactic sugaring
+** The Proof class ** 
+
+The class Proof brings everything together, enabling the user to form a proof by specifying rules. 
+This class also contains a number of static methods for syntactic sugaring.
+
+For example a valid Proof instance would be as follows:
+
+			begin()
+        /*1*/   .hyp(exists("x","X",exists("y", "Y", $("P"))))
+        /*2*/           .subhyp(exists("y", "Y", $("P")))
+        /*3*/                   .subhyp($("P"))
+        /*4*/                           .substAdd(3, "x")
+        /*5*/                           .existsI(4, "x", "X")
+        /*6*/                           .substAdd(5, "y")
+        /*7*/                           .existsI(6, "y", "Y")
+                                        .end()
+        /*8*/                   .impliesI(3, 7)
+        /*9*/                   .forallI(8, "y", "Y")
+        /*10*/                  .existsE(2, 9)
+                                .end()
+        /*11*/          .impliesI(2, 10)
+        /*12*/          .forallI(11, "x", "X")
+        /*13*/          .existsE(1, 12)
+                .end();
+
+You can subsequently print the proof by calling "print()" or "printStepped()".
+The difference is that first call to printStepped() shows the proof excluding subproofs. 
+Subsequent calls show the next level subproofs accordingly. 
+
+Calling print() on the above instance yields the following:
+
+Proof Statement: Ex:X.Ey:Y.P |- Ey:Y.Ex:X.P
+   1: Ex:X.Ey:Y.P                   Hyp
+     2: Ey:Y.P                        SubHyp
+       3: P                             SubHyp
+       4: (P)[x <- x]                   3, Law P = P[x <- x]
+       5: Ex:X.P                        4, Exists Introduction
+       6: (Ex:X.P)[y <- y]              5, Law P = P[x <- x]
+       7: Ey:Y.Ex:X.P                   6, Exists Introduction
+     8: (P => Ey:Y.Ex:X.P)            3-7, Implies Introduction
+     9: Ay:Y.(P => Ey:Y.Ex:X.P)       8, Forall Introduction [y\1]
+    10: Ey:Y.Ex:X.P                   2,9, Exists Elimination [y\Ey:Y.Ex:X.P]
+  11: (Ey:Y.P => Ey:Y.Ex:X.P)       2-10, Implies Introduction
+  12: Ax:X.(Ey:Y.P => Ey:Y.Ex:X.P)  11, Forall Introduction
+  13: Ey:Y.Ex:X.P                   1,12, Exists Elimination [x\Ey:Y.Ex:X.P]
+
