@@ -77,7 +77,7 @@ public abstract class Form {
 		return new Implies(p1,p2);
 	}
 	
-	public static Form Biimplies(Form p1, Form p2) throws InvalidFormException
+	public static Form biimplies(Form p1, Form p2) throws InvalidFormException
 	{
 		return new Biimplies(p1,p2);
 	}

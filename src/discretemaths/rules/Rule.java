@@ -18,6 +18,7 @@ public abstract class Rule {
 		return end;
 	}
 	
+	//returns the resulting line after applying the rule
 	public abstract Form evaluate(Proof proof) throws Exception; 
 	
 	public abstract String toString();

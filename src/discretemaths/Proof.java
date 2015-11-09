@@ -119,21 +119,36 @@ public class Proof {
 		return this;
 	}
 	
+	public List<Form> getHyp()
+	{
+		List<Form> hyps = new ArrayList<Form>();
+		for (int i=0; i<proof.size(); i++)
+			if (reasons.get(i).getClass() == Hyp.class)
+				hyps.add(proof.get(i));
+		return hyps;
+	}
+	
+	public String getHypString()
+	{
+		String s = "";
+		for (Form f: getHyp())
+			s += f + ", ";
+
+		//remove extra comma
+		if (s.endsWith(", "))
+			s = s.substring(0,s.length()-2);
+		
+		return s;
+	}
+	
+	public Form getConclusion()
+	{
+		return proof.get(proof.size()-1);
+	}
+	
 	public Proof printStatement()
 	{
-		String proofStat = "Proof Statement: ";
-		boolean hyp = false;
-		for (int i=0; i<proof.size(); i++)
-			if (reasons.get(i).getClass() == Hyp.class){
-				proofStat += proof.get(i) + ", ";
-				hyp = true;
-			}
-		
-		//remove extra comma
-		if (hyp)
-			proofStat = proofStat.substring(0,proofStat.length()-2);
-	
-		proofStat += " |- " + proof.get(proof.size()-1);
+		String proofStat = "Proof Statement: " + getHypString()+" |- " + getConclusion();
 		System.out.println(proofStat);
 		return this;
 	}
@@ -156,17 +171,32 @@ public class Proof {
 		return this;
 	}
 	
+	public boolean isWellFormed()
+	{
+		return isWellFormed(false);
+	}
+	
+	public boolean isWellFormed(boolean verbose)
+	{
+		if (depth != 0) {
+			if (verbose) 
+				System.out.println("Incomplete proof! (Did you forget an end?)");
+			return false;
+		}
+		if (proof.size() == 0){
+			if (verbose)
+				System.out.println("Empty proof! Nothing to show");
+			return false;
+		}
+		
+		return true;
+	}
+	
 	//generic print
 	public Proof print(int step)
 	{
-		if (depth != 0) {
-			System.out.println("Incomplete proof! (Did you forget an end?)");
+		if (!isWellFormed(true))
 			return this;
-		}
-		if (proof.size() == 0){
-			System.out.println("Empty proof! Nothing to show");
-			return this;
-		}
 
 		printStatement();
 
@@ -194,6 +224,11 @@ public class Proof {
 		}
 		System.out.println();
 		return this;
+	}
+	
+	public String toString()
+	{
+		return getHypString() + " |- " + getConclusion();
 	}
 
 	//note that begin() does not contribute to an additional line in the proof
@@ -234,6 +269,7 @@ public class Proof {
 		return this;
 	}
 
+	//lemma without info
 	public Proof lemma(Form p) throws InvalidRuleException
 	{
 		if (!p.isWellFormed())
@@ -242,6 +278,17 @@ public class Proof {
 		reasons.add(new Lemma());
 		depths.add(depth);
 		return this;
+	}
+	
+	public Proof lemma(int line, Proof proof)
+	{
+		return rule(new Lemma(line, proof));
+	}
+	
+	//for when lemma is a tautology
+	public Proof lemma(Proof proof)
+	{
+		return rule(new Lemma(proof));
 	}
 
 	//syntactic sugar for rules
