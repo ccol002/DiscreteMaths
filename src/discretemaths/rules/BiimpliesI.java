@@ -25,6 +25,11 @@ public class BiimpliesI extends Rule{
 			throw new InvalidRuleException("BiimpliesI - Implication expected at line " + line1);
 		else if (two.getClass() != Implies.class)
 			throw new InvalidRuleException("BiimpliesI - Implication expected at line " + line2);
+	    if (one.hasSubt())
+			throw new InvalidRuleException("BiimpliesI - Don't know how to handle substitution "+ line1);
+	    else if (two.hasSubt())
+			throw new InvalidRuleException("BiimpliesI - Don't know how to handle substitution "+ line2);
+		
 		else if (
 			((Implies)one).getLeft().equals(((Implies)one).getRight()) 
 			&& ((Implies)one).getRight().equals(((Implies)one).getLeft()))

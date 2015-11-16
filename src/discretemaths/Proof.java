@@ -292,89 +292,89 @@ public class Proof {
 	}
 
 	//syntactic sugar for rules
-	public Proof copy(int i)
+	public Proof copy(int source)
 	{
-		return rule(new Copy(i));
+		return rule(new Copy(source));
 	}
 	
-	public Proof andE1(int i)
+	public Proof andE1(int conjunction)
 	{
-		return rule(new AndE1(i));
+		return rule(new AndE1(conjunction));
 	}
 
-	public Proof andE2(int i)
+	public Proof andE2(int conjunction)
 	{
-		return rule(new AndE2(i));
+		return rule(new AndE2(conjunction));
 	}
 
-	public Proof impliesE(int i, int j)
+	public Proof impliesE(int implication, int truth)
 	{
-		return rule(new ImpliesE(i,j));
+		return rule(new ImpliesE(implication,truth));
 	}
 
-	public Proof impliesI(int i, int j)
+	public Proof impliesI(int start, int end)
 	{
-		return rule(new ImpliesI(i,j));
+		return rule(new ImpliesI(start,end));
 	}
 
-	public Proof orE(int i, int j, int k)
+	public Proof orE(int disjunction, int implicationLeft, int implicationRight)
 	{
-		return rule(new OrE(i,j,k));
+		return rule(new OrE(disjunction,implicationLeft,implicationRight));
 	}
 
-	public Proof orI1(int i, Form p)
+	public Proof orI1(int left, Form rightFormula)
 	{
-		return rule(new OrI1(i,p));
+		return rule(new OrI1(left,rightFormula));
 	}
 
-	public Proof orI2(int i, Form p)
+	public Proof orI2(int right, Form leftFormula)
 	{
-		return rule(new OrI2(i,p));
+		return rule(new OrI2(right,leftFormula));
 	}
 
-	public Proof biimpliesI(int i, int j)
+	public Proof biimpliesI(int implicationRight, int implicationLeft)
 	{
-		return rule(new BiimpliesI(i,j));
+		return rule(new BiimpliesI(implicationRight,implicationLeft));
 	}
 
-	public Proof biimpliesE1(int i)
+	public Proof biimpliesE1(int biimplication)
 	{
-		return rule(new BiimpliesE1(i));
+		return rule(new BiimpliesE1(biimplication));
 	}
 
-	public Proof biimpliesE2(int i)
+	public Proof biimpliesE2(int biimplication)
 	{
-		return rule(new BiimpliesE2(i));
+		return rule(new BiimpliesE2(biimplication));
 	}
 
-	public Proof notE(int i)
+	public Proof notE(int doubleNegation)
 	{
-		return rule(new NotE(i));
+		return rule(new NotE(doubleNegation));
 	}
 
-	public Proof notI(int i, int j)
+	public Proof notI(int implicationPositive, int implicationNegative)
 	{
-		return rule(new NotI(i,j));
+		return rule(new NotI(implicationPositive,implicationNegative));
 	}
 	
-	public Proof forallE(int i)
+	public Proof forallE(int forall)
 	{
-		return rule(new ForallE(i));
+		return rule(new ForallE(forall));
 	}
 	
-	public Proof existsI(int i,String var, String type)
+	public Proof existsI(int source,String var, String type)
 	{
-		return rule(new ExistsI(i,var,type));
+		return rule(new ExistsI(source,var,type));
 	}
 	
-	public Proof existsE(int i,int j)
+	public Proof existsE(int exists,int forall)
 	{
-		return rule(new ExistsE(i,j));
+		return rule(new ExistsE(exists,forall));
 	}
 	
-	public Proof forallI(int i,String var, String type)
+	public Proof forallI(int source,String var, String type)
 	{
-		return rule(new ForallI(i,var,type));
+		return rule(new ForallI(source,var,type));
 	}
 	
 	public Proof substAdd(int i, String var)

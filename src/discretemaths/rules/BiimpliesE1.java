@@ -19,6 +19,8 @@ public class BiimpliesE1 extends Rule{
 		Form p = proof.refer(line);
 		if (p.getClass() != Biimplies.class)
 			throw new InvalidRuleException("BiimpliesE1 - Did not find a biimplication at line "+ line);
+		else if (p.hasSubt())
+			throw new InvalidRuleException("BiimpliesE1 - Don't know how to handle substitution "+ line);
 		else
 			return new Implies(((Biimplies)p).getLeft().clone(),((Biimplies)p).getRight().clone());	 
 	}

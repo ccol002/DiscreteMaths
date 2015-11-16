@@ -18,12 +18,18 @@ public class ImpliesE extends Rule{
 	public Form evaluate(Proof proof) throws Exception
 	{
 		Form p = proof.refer(impLine);
+		Form q = proof.refer(leftLine);
 		if (p.getClass() != Implies.class)
-			throw new InvalidRuleException("Did not find a implication at line "+ impLine);
-		else if (((Implies)p).getLeft().equals(proof.refer(leftLine)))
+			throw new InvalidRuleException("ImpliesE - Did not find a implication at line "+ impLine);
+		else if (p.hasSubt())
+			throw new InvalidRuleException("ImpliesE - Don't know how to handle substitution "+ impLine);
+	    else if (q.hasSubt())
+			throw new InvalidRuleException("ImpliesE - Don't know how to handle substitution "+ leftLine);
+		
+		else if (((Implies)p).getLeft().equals(q))
 			return ((Implies)p).getRight().clone();
 		else 
-			throw new InvalidRuleException("Did not find matching statement for implication elimination at line "+ leftLine);
+			throw new InvalidRuleException("ImpliesE - Did not find matching statement at line "+ leftLine);
 	}
 	
 	public String toString()

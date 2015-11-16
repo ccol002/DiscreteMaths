@@ -28,6 +28,31 @@ public class AdvancedPredicate {
 	/*13*/		.existsE(1, 12)			
 		.end().printStepped().printStepped().printStepped();
 		
+		
+		Form g = and(not(exists("x","X",$("P"))),forall("x","X", implies($("Q"),$("P"))));
+		
+		begin()
+	/*1*/	.hyp(g)
+	/*2*/		.subhyp(exists("x", "X", $("Q")))
+	/*3*/			.subhyp($("Q"))
+	/*4*/				.andE2(1)
+	/*5*/				.forallE(4)
+	/*6*/				.substRem(5)
+	/*7*/				.impliesE(6, 3)
+	/*8*/				.substAdd(7, "x")
+	/*9*/				.existsI(8, "x", "X")
+					.end()
+	/*10*/			.impliesI(3, 9)
+	/*11*/			.forallI(10, "x", "X")
+	/*12*/			.existsE(2, 11)
+				.end()
+	/*13*/		.impliesI(2, 12)
+	/*14*/		.subhyp(exists("x", "X", $("Q")))
+	/*15*/			.andE1(1)
+				.end()
+	/*16*/		.impliesI(14, 15)	
+	/*17*/		.notI(13,16)
+			.end().print();
 	}
 
 }

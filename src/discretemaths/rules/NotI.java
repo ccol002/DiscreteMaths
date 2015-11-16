@@ -31,6 +31,10 @@ public class NotI extends Rule{
 			throw new InvalidRuleException("NotI - Not expected in right side of implication at line "+ impLine2);
 		else if (!((Implies)imp1).getRight().equals(((Not)((Implies)imp2).getRight()).getSub()))
 			throw new InvalidRuleException("NotI - Mismatch in right side of implications at lines "+ impLine1 + "," + impLine2);
+		else if (imp1.hasSubt())
+			throw new InvalidRuleException("NotI - Don't know how to handle substitution "+ impLine1);
+		else if (imp2.hasSubt())
+			throw new InvalidRuleException("NotI - Don't know how to handle substitution "+ impLine2);
 		else
 			return new Not(((Implies)imp1).getLeft().clone());
 				 

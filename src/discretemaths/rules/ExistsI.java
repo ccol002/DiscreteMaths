@@ -25,7 +25,7 @@ public class ExistsI extends Rule{
 		else if (!p.getSubstOld().equals(var))
 			throw new InvalidRuleException("ExistsI - Variable "+var + " did not match substituted variable "+p.getSubstOld()+" at line "+ line);
 		else 
-			return new Exists(var,type,p.clone().subst(null, null));		
+			return new Exists(var,type,p.clone().removeSubst());		
 	}
 	
 	public String toString()

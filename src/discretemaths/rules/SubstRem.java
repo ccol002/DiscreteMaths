@@ -22,7 +22,7 @@ public class SubstRem extends Rule{
 		else if (!proof.refer(line).getSubstNew().equals(proof.refer(line).getSubstOld()))
 			throw new InvalidRuleException("Variable name mismatch found at line " + line);
 		else
-			return p.clone().subst(null, null); 
+			return p.clone().removeSubst(); 
 	}
 	
 	public String toString()

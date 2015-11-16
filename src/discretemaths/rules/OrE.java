@@ -36,6 +36,12 @@ public class OrE extends Rule{
 			throw new InvalidRuleException("OrE - Mismatch in disjunction and implication at lines "+ orLine + "," + impLine2);
 		else if (!((Implies)imp1).getRight().equals(((Implies)imp2).getRight()))
 			throw new InvalidRuleException("OrE - Mismatch in implications at lines "+ impLine1 + "," + impLine2);
+		else if (or.hasSubt())
+			throw new InvalidRuleException("OrE - Don't know how to handle substitution "+ orLine);
+		else if (imp1.hasSubt())
+			throw new InvalidRuleException("OrE - Don't know how to handle substitution "+ impLine1);
+		else if (imp2.hasSubt())
+			throw new InvalidRuleException("OrE - Don't know how to handle substitution "+ impLine2);
 		else
 			return ((Implies)imp1).getRight().clone();	 
 	}

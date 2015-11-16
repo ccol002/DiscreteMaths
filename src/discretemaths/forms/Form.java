@@ -5,11 +5,25 @@ public abstract class Form {
 	protected String substNew;
 	protected String substOld;
 	
-	public Form subst(String substNew, String substOld)
+	public Form subst(String substNew, String substOld)throws InvalidFormException
 	{
+		if (substNew==null || substOld==null)
+			throw new InvalidFormException("Variables substitution requires two non-null inputs");
 		this.substNew = substNew;
 		this.substOld = substOld;
 		return this;
+	}
+	
+	public Form removeSubst()
+	{
+		this.substNew = null;
+		this.substOld = null;
+		return this;
+	}
+	
+	public boolean hasSubt()
+	{
+		return substNew !=null && substOld != null;
 	}
 	
 	public String getSubstNew()
@@ -26,7 +40,14 @@ public abstract class Form {
 	
 	public Form cloneHelper(Form f)
 	{
-		subst(f.getSubstNew(), f.getSubstOld());
+		try{
+			if (f.hasSubt())
+				subst(f.getSubstNew(), f.getSubstOld());
+		}catch(Exception ex)
+		{
+			//should not be a problem when called within the class itself
+			System.err.println("Something strange happend.. you should never see this");
+		}
 		return this;
 	}
 	

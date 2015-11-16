@@ -18,6 +18,8 @@ public class AndE1 extends Rule{
 		Form p = proof.refer(line);
 		if (p.getClass() != And.class)
 			throw new InvalidRuleException("AndE1 - Did not find a conjunction at line "+ line);
+		else if (p.hasSubt())
+			throw new InvalidRuleException("AndE1 - Don't know how to handle substitution "+ line);
 		else
 			return ((And)p).getLeft().clone();	 
 	}
