@@ -13,13 +13,13 @@ public class BasicPropositional {
 		Form f = and($("A"),and($("C"),$("B")));//A ^ (C ^ B)
 		//System.out.println(f);
 		
-		begin()
-	/*1*/	.hyp(f)
+
+	/*1*/	hyp(f)
 	/*2*/	.andE1(1)
 		.end().print();
 		
-		begin()
-	/*1*/	.hyp(f)
+
+	/*1*/	hyp(f)
 	/*2*/		.subhyp($("A"))
 	/*3*/		.andE2(1)
 	/*4*/		.andE2(3)
@@ -28,8 +28,8 @@ public class BasicPropositional {
 		.end().print();
 		
 		
-		Proof p = begin()
-				/*1*/	.hyp(not($("P")))
+		Proof p = 
+				/*1*/	hyp(not($("P")))
 				/*2*/		.subhyp($("P"))
 				/*3*/			.subhyp(not($("Q")))
 				/*4*/				.copy(2)
@@ -49,8 +49,8 @@ public class BasicPropositional {
 		
 		Form g = not(implies($("P"),$("Q")));//!(P->Q)
 		 
-		begin()
-		/*1*/	.hyp(g)
+
+		/*1*/	hyp(g)
 		/*2*/		.subhyp($("Q"))
 		/*3*/			.subhyp(not($("P")))
 		/*4*/				.lemma(3,p)

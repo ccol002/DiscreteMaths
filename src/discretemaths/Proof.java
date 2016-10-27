@@ -237,14 +237,18 @@ public class Proof {
 		return new Proof();
 	}
 
-	public Proof hyp(Form p) throws InvalidRuleException
+	public static Proof hyp(Form... forms) throws InvalidRuleException
 	{
-		if (!p.isWellFormed())
-			throw new InvalidRuleException("Malformed formula: " + p);
-		proof.add(p);
-		reasons.add(new Hyp());
-		depths.add(depth);
-		return this;
+		Proof pf = new Proof();
+		
+		for (Form p:forms){
+			if (!p.isWellFormed())
+				throw new InvalidRuleException("Malformed formula: " + p);
+			pf.proof.add(p);
+			pf.reasons.add(new Hyp());
+			pf.depths.add(pf.depth);
+		}
+		return pf;
 	}
 
 	//note that end() does not contribute to an additional line in the proof

@@ -10,8 +10,8 @@ public class AdvancedPredicate {
 		
 		Form f = exists("x","X",exists("y", "Y", $("P")));
 		
-		begin()
-	/*1*/	.hyp(f)
+
+	/*1*/	 hyp(f)
 	/*2*/		.subhyp(exists("y", "Y", $("P")))
 	/*3*/			.subhyp($("P"))
 	/*4*/				.substAdd(3, "x")
@@ -31,8 +31,8 @@ public class AdvancedPredicate {
 		
 		Form g = and(not(exists("x","X",$("P"))),forall("x","X", implies($("Q"),$("P"))));
 		
-		begin()
-	/*1*/	.hyp(g)
+
+	/*1*/	hyp(g)
 	/*2*/		.subhyp(exists("x", "X", $("Q")))
 	/*3*/			.subhyp($("Q"))
 	/*4*/				.andE2(1)
