@@ -9,6 +9,7 @@ import static discretemaths.forms.Form.*;
 public class BasicPropositional {
 
 	public static void main(String[] args)throws Exception {
+				
 		
 		Form f = and($("A"),and($("C"),$("B")));//A ^ (C ^ B)
 		//System.out.println(f);
@@ -65,7 +66,14 @@ public class BasicPropositional {
 					.end()
 		/*11*/		.impliesI(2,10)		
 				.end().print();
+
 		
+		Form h = and(implies($("P"),$("Q")), implies($("Q"),$("P"))); //(P=>Q)^(Q=>P)
+	      /*1*/ hyp(h)
+	      /*2*/ .andE1(1)
+	      /*3*/ .andE2(1)
+	      /*4*/  .biimpliesI(3, 2)
+	               .end().print();
 	}
 
 }

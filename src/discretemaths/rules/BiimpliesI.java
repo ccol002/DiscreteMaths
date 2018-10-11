@@ -31,8 +31,8 @@ public class BiimpliesI extends Rule{
 			throw new InvalidRuleException("BiimpliesI - Don't know how to handle substitution "+ line2);
 		
 		else if (
-			((Implies)one).getLeft().equals(((Implies)one).getRight()) 
-			&& ((Implies)one).getRight().equals(((Implies)one).getLeft()))
+			((Implies)one).getLeft().equals(((Implies)two).getRight()) 
+			&& ((Implies)one).getRight().equals(((Implies)two).getLeft()))
 			return new Biimplies(((Implies)one).getLeft().clone(),((Implies)one).getRight().clone());
 		else
 			throw new InvalidRuleException("Mismatch in implications at line " + line1 + " and " + line2);	 
