@@ -7,6 +7,7 @@ import discretemaths.forms.False;
 import discretemaths.forms.Form;
 import discretemaths.rules.AndE1;
 import discretemaths.rules.AndE2;
+import discretemaths.rules.AndI;
 import discretemaths.rules.BiimpliesE1;
 import discretemaths.rules.BiimpliesE2;
 import discretemaths.rules.BiimpliesI;
@@ -309,6 +310,11 @@ public class Proof {
 	public Proof andE2(int conjunction)
 	{
 		return rule(new AndE2(conjunction));
+	}
+	
+	public Proof andI(int a, int b)
+	{
+		return rule(new AndE2(a , b));
 	}
 
 	public Proof impliesE(int implication, int truth)
