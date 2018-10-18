@@ -18,6 +18,11 @@ public class NotI extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {impLine1, impLine2};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form imp1 = proof.refer(impLine1);
 		Form imp2 = proof.refer(impLine2);
 		

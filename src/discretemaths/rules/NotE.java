@@ -15,6 +15,11 @@ public class NotE extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {line};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form p = proof.refer(line);
 		if (p.getClass() != Not.class)
 			throw new InvalidRuleException("NotE - Did not find a negation at line " + line);

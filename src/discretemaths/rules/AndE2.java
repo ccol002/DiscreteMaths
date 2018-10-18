@@ -16,6 +16,11 @@ public class AndE2 extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {line};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form p = proof.refer(line);
 		if (p.getClass() != And.class)
 			throw new InvalidRuleException("AndE2 - Did not find a conjunction at line "+ line);

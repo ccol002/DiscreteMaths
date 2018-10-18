@@ -16,6 +16,12 @@ public class BiimpliesE1 extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+
+		int[] lines = {line};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form p = proof.refer(line);
 		if (p.getClass() != Biimplies.class)
 			throw new InvalidRuleException("BiimpliesE1 - Did not find a biimplication at line "+ line);
