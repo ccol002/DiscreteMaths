@@ -17,6 +17,11 @@ public class ImpliesE extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {impLine, leftLine};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form p = proof.refer(impLine);
 		Form q = proof.refer(leftLine);
 		if (p.getClass() != Implies.class)

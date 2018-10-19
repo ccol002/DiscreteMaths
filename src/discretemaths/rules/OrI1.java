@@ -17,6 +17,11 @@ public class OrI1 extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {line};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		return new Or(proof.refer(line).clone(),form);	 
 	}
 	

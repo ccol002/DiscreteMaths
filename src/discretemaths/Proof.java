@@ -311,10 +311,10 @@ public class Proof {
 	{
 		return rule(new AndE2(conjunction));
 	}
-	
+
 	public Proof andI(int a, int b)
 	{
-		return rule(new AndE2(a , b));
+		return rule(new AndI(a, b));
 	}
 
 	public Proof impliesE(int implication, int truth)

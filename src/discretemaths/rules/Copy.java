@@ -14,6 +14,10 @@ public class Copy extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {line};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
 		return proof.refer(line).clone(); 
 	}
 	
@@ -21,7 +25,9 @@ public class Copy extends Rule{
 	{
 		return line + ", Copy";
 	}
-	
+
+
+
 }
 
 

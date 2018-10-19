@@ -7,7 +7,26 @@ import discretemaths.forms.Form;
 public abstract class Rule {
 
 	private boolean end = false;
-	
+
+	public boolean checkSubHyp(Proof proof, int[] line){
+		int prevdepth = -1;
+		for(int i = 0; i < line.length; i++) {
+			try {
+				prevdepth = proof.getDepth(line[i]);
+				//System.out.println(line[i]);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			int cdepth = proof.getCurrentDepth();
+			//System.out.println(cdepth + " <= depth");
+			//System.out.println(prevdepth + " <= previous Depth");
+			if (prevdepth > cdepth) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void setEnd()
 	{
 		end = true;

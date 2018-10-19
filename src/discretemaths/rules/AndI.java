@@ -17,6 +17,11 @@ public class AndI extends Rule{
 	
 	public Form evaluate(Proof proof) throws Exception
 	{
+		int[] lines = {line1, line2};
+		if (checkSubHyp(proof, lines)){
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof");
+		}
+
 		Form p1 = proof.refer(line1);
 		Form p2 = proof.refer(line2);
 	    if (p1.hasSubt())
