@@ -1,8 +1,12 @@
 package discretemaths.examples;
 
+import static discretemaths.Proof.hyp;
+import static discretemaths.forms.Form.$;
+import static discretemaths.forms.Form.exists;
+import static discretemaths.forms.Form.implies;
+import static discretemaths.forms.Form.not;
+
 import discretemaths.forms.Form;
-import static discretemaths.Proof.*;
-import static discretemaths.forms.Form.*;
 
 public class Jan2016 {
 

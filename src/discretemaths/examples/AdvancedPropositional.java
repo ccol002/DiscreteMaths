@@ -1,8 +1,11 @@
 package discretemaths.examples;
 
+import static discretemaths.Proof.begin;
+import static discretemaths.forms.Form.$;
+import static discretemaths.forms.Form.not;
+import static discretemaths.forms.Form.or;
+
 import discretemaths.forms.Form;
-import static discretemaths.Proof.*;
-import static discretemaths.forms.Form.*;
 
 public class AdvancedPropositional {
 

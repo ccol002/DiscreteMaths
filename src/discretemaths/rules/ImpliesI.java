@@ -23,6 +23,8 @@ public class ImpliesI extends Rule{
 			throw new InvalidRuleException("ImpliesI - Did not find an opening subhyp at "+ startLine);
 		else if (!proof.getReason(endLine).isEnd())
 			throw new InvalidRuleException("ImpliesI - Did not find end of subproof at "+ endLine + " (did you forget to call .end()?)");	
+		else if (proof.getDepth(startLine) != proof.getCurrentDepth()+1)
+			throw new InvalidRuleException("Trying to use line(s) from sub proof to outer proof"+ startLine);
 		else
 			return new Implies(proof.refer(startLine).clone(), proof.refer(endLine).clone());	 
 	}
