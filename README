@@ -9,10 +9,10 @@ This package contains a few proof examples which can be run by calling the class
 ** The forms package **
 The forms package forms the structure of the formulae:
 
-	                                    Form
-	      ________________________________|______________________________________
+                                        Form
+	  ________________________________|______________________________________
          |                    |                    |                             |
-	   Atomic               Unary               Binary                      Quantifier
+        Atomic               Unary               Binary                      Quantifier
    ______|______              |            ________|_________             _______|_______       
   |      |      |             |           |    |   |         |           |               |
 True  False  Predicate       Not         And  Or  Implies  Biimplies    Forall         Exists
@@ -40,7 +40,7 @@ This class also contains a number of static methods for syntactic sugaring.
 
 For example a valid Proof instance would be as follows:
 
-			begin()
+		begin()
         /*1*/   .hyp(exists("x","X",exists("y", "Y", $("P"))))
         /*2*/           .subhyp(exists("y", "Y", $("P")))
         /*3*/                   .subhyp($("P"))
