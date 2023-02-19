@@ -26,13 +26,13 @@ public class ForallI extends Rule{
 		if (p.getSubstNew()!=null || p.getSubstOld()!=null)
 			throw new InvalidRuleException("ForallE - Unexpected variable substitution found at line "+ line);
 		else {
-			int currentDepth = proof.getCurrentDepth()-1;
+			int currentDepth = proof.getCurrentDepth();
 			for (int i = proof.getCurrentLine(); i>0; i--){
 				if (proof.getDepth(i) <= currentDepth)
 					if (proof.getReason(i).getClass() == SubHyp.class
 					 || proof.getReason(i).getClass() == Hyp.class){
 						if (proof.getLine(i).occursFree(var))
-							throw new Exception(var + " occurs free in line " + i+1);
+							throw new Exception(var + " occurs free in line " + (i));
 						else
 							occursFreeCheck += var + "\\" + i + ",";
 					}
