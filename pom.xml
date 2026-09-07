@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.um.discretemaths</groupId>
+  <artifactId>discretemaths</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>Discrete Maths Proof Builder</name>
+  <description>
+    A small Java library for building and pretty-printing natural deduction
+    proofs (propositional and predicate logic), used as a teaching aid for
+    the Discrete Mathematics course.
+  </description>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <!-- Run an example with:
+           mvn compile exec:java -Dexec.mainClass=discretemaths.examples.BasicPropositional -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.6.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
