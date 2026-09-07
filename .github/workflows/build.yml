@@ -19,8 +19,8 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Compile
-        run: mvn --batch-mode --no-transfer-progress compile
+      - name: Compile and run tests
+        run: mvn --batch-mode --no-transfer-progress test
 
       - name: Run examples (smoke test)
         run: |
