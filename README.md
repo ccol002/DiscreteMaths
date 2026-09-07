@@ -30,6 +30,16 @@ mvn compile exec:java -Dexec.mainClass=discretemaths.examples.BasicPropositional
 You should see several proofs printed to the console, each starting with a
 line like `Proof Statement: ... |- ...`.
 
+Run the test suite with:
+
+```bash
+mvn test
+```
+
+The tests under `src/test/java/discretemaths/` also double as small worked
+examples of each rule — worth a look if you want to see a rule used in
+isolation rather than as part of a full proof.
+
 To use the library in your own class, either add another `main` class under
 `src/main/java/discretemaths/examples/` and run it the same way, or import
 `discretemaths.Proof` and `discretemaths.forms.Form` into your own Maven
